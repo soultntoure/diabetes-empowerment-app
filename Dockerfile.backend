@@ -1,0 +1,20 @@
+# Use an official Node runtime as a parent image
+FROM node:18-alpine
+
+# Set the working directory in the container
+WORKDIR /app
+
+# Copy package.json and package-lock.json
+COPY ./backend/package*.json ./backend/
+
+# Install app dependencies
+RUN npm install
+
+# Bundle app source
+COPY ./backend/ ./backend/
+
+# Expose port 5000 to the outside world
+EXPOSE 5000
+
+# Command to run the application
+CMD [ "npm", "start" ]
